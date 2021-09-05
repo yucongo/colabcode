@@ -1,3 +1,4 @@
+from pathlib import Path
 import os
 import subprocess
 import uuid
@@ -65,6 +66,9 @@ class ColabCode:
             public_url = tunnel.public_url
             ngrok.disconnect(public_url)
         url = ngrok.connect(addr=self.port, bind_tls=True)
+        urlfile = Path("~/url.txt").expanduser()
+        print(f" {url} written to {urlfile}...")
+        urlfile.write_text(url, encoding="utf8")
         if self._code:
             print(f"Code Server can be accessed on: {url}")
         else:
