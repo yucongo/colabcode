@@ -67,8 +67,8 @@ class ColabCode:
             ngrok.disconnect(public_url)
         url = ngrok.connect(addr=self.port, bind_tls=True)
         urlfile = Path("~/url.txt").expanduser()
-        print(f" {url} written to {urlfile}...")
-        urlfile.write_text(url, encoding="utf8")
+        print(f" {str(url)} written to {urlfile}...")
+        urlfile.write_text(str(url), encoding="utf8")
         if self._code:
             print(f"Code Server can be accessed on: {url}")
         else:
